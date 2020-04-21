@@ -16,9 +16,9 @@ if ($result) {
 }else {
     echo"Ada kesalahan";
 }
-$hash_password = password_hash('yudistar241789',PASSWORD_DEFAULT);
-$query = "INSERT INTO user VALUES ('admin',$hash_password,'fuady.teknikinformatika@gmail.com')";
-$pdo->query($query);
+$hash_password = password_hash('yudistar',PASSWORD_DEFAULT);
+$query = "INSERT INTO user VALUES ('admin','$hash_password','fuady.teknikinformatika@gmail.com')";
+$result = $pdo->query($query);
 
 if ($result) {
     echo "User baru admin dibuat <br>";

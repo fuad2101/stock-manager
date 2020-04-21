@@ -8,6 +8,7 @@ class validate{
     }
     
     public function setRules($item,$itemLabel,$rules){
+
         if (isset($this->_formMethod[$item])) {
             $formValue = $this->_formMethod[$item];
         }else {

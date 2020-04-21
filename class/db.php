@@ -19,7 +19,6 @@ class DB{
         }
     } 
 
-    // Singleton Pattern instansiasi Class DB
     public static function getInstance(){
         if(!isset(self::$_instance)){
             self::$_instance = new DB();
@@ -27,7 +26,6 @@ class DB{
         return self::$_instance;
     }
 
-    // Method Runquery
     public function runQuery($query,$bindValue = []){
         try {
             $stmt = $this->_pdo->prepare($query);
