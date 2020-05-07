@@ -39,18 +39,18 @@ include 'header.php';
                 <tbody>
                     <?php 
                         foreach ($tabelBarang as $barang) {
-                            echo "<tr>";
-                            echo "<td>".$barang->id_barang."</td>";
-                            echo "<td>".$barang->nama_barang."</td>";
-                            echo "<td>".$barang->jumlah_barang."</td>";
-                            echo "<td>".number_format($barang->harga_barang,'0',',','.')."</td>";
-                            $update = new DateTime($barang->waktu_update);
-                            echo "<td>".$update->format('d M Y h:i:s')."</td>";
-                            echo "<td>";
-                            echo "<a href=\"edit_barang.php?id_barang=$barang->id_barang\" class=\"btn btn-primary btn-sm\">Edit</a>";
-                            echo "<a href=\"hapus_barang.php?id_barang=$barang->id_barang\" class=\"btn btn-danger btn-sm ml-1 text-white\">Hapus</a>";
-                            echo "</td>";
-                            echo "</tr>";
+                        echo "<tr>";
+                        echo "<td>".$barang->id_barang."</td>";
+                        echo "<td>".$barang->nama_barang."</td>";
+                        echo "<td>".$barang->jumlah_barang."</td>";
+                        echo "<td>".number_format($barang->harga_barang,'0',',','.')."</td>";
+                        $update = new DateTime($barang->tanggal_update);
+                        echo "<td>".$update->format('d M Y h:i:s')."</td>";
+                        echo "<td>";
+                        echo "<a href=\"edit_barang.php?id_barang=$barang->id_barang\" class=\"btn btn-primary btn-sm\">Edit</a>";
+                        echo "<a href=\"hapus_barang.php?id_barang=$barang->id_barang\" class=\"btn btn-danger btn-sm ml-1 text-white\">Hapus</a>";
+                        echo "</td>";
+                        echo "</tr>";
                         }
                     ?>
                 </tbody>

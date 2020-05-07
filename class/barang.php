@@ -7,6 +7,7 @@ class barang{
     public function __construct(){
         $this->_db = DB::getInstance();
     }
+
     public function validasi($formMethod){
         $validate = new validate($formMethod);
         $this->_formItem['nama_barang'] = $validate->setRules('nama_barang','Nama Barang',[
@@ -28,24 +29,28 @@ class barang{
             return $validate->getError();
         }   
     }
+
     public function getItem($item){
         return isset($this->_formItem[$item]) ? $this->_formItem[$item] : '';
     }
+
     public function insert(){
         $newBarang = 
         [
             'nama_barang' => $this->getItem('nama_barang'),
             'harga_barang' => $this->getItem('harga_barang'),
-            'jumlah_barang' => $this->getItem('jumlah_barang')
+            'jumlah_barang' => $this->getItem('jumlah_barang'),
         ];
         return $this->_db->insert('barang',$newBarang);
     }
+
     public function generate($idBarang){
         $result = $this->_db->getWhereOnce('barang',['id_barang','=',$idBarang]);
         foreach ($result as $key => $value) {
             $this->_formItem[$key] = $value;
         }
     }
+
     public function update($idBarang){
         $newBarang = [
             'nama_barang'=>$this->getItem('nama_barang'),
@@ -54,6 +59,7 @@ class barang{
         ];
         $this->_db->update('barang',$newBarang,['id_barang','=',$idBarang]);
     }
+
     public function delete($idBarang){
         $this->_db->delete('barang',['id_barang','=',$idBarang]);
     }

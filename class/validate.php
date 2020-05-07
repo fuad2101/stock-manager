@@ -1,6 +1,6 @@
 <?php
 class validate{
-    private $_error = NULL;
+    private $_error = [];
     private $_formMethod = NULL;
 
     public function __construct($_formMethod){
@@ -8,9 +8,8 @@ class validate{
     }
     
     public function setRules($item,$itemLabel,$rules){
-
         if (isset($this->_formMethod[$item])) {
-            $formValue = $this->_formMethod[$item];
+            $formValue = trim($this->_formMethod[$item]);
         }else {
             $formValue = "";
         }
@@ -50,7 +49,7 @@ class validate{
                     }
                     break;
                 case 'matches':
-                    if ($formValue != $this->_formMethod[$ruleValue]) {
+                    if ($formValue != $this->_formMethod[$ruleValue]) { 
                         $this->_error[$item]="$itemLabel tidak sama";
                     }
                     break;
@@ -70,7 +69,7 @@ class validate{
                     }
                     break;
                 case 'unique':
-                    require_once('db.php');
+                    require_once ('db.php');
                     $db = DB::getInstance();
                     if ($db->check($ruleValue[0],$ruleValue[1],$formValue)) {
                         $this->_error[$item]= "Username sudah ada. Silahkan pilih username lain";
@@ -80,11 +79,10 @@ class validate{
 
             if (!empty($this->_error[$item])) {
                     break;
-                }else {
-                    return $formValue;
                 }
             }
-        }
+            return $formValue;
+            }
 
     public function getError(){
         return $this->_error;
@@ -92,6 +90,5 @@ class validate{
     public function passed(){
         return empty($this->_error) ? true : false ;
     }
-    
-    }
+}    
 ?>

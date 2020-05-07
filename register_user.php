@@ -5,13 +5,11 @@ $user = new user();
 
 if (!empty($_POST)) {
     $pesanError = $user->validasiInsert($_POST);
-    var_dump($pesanError);
+    // var_dump($pesanError);
     if (empty($pesanError)) {
         echo '<br>Insert Berhasil';
-        // $user->insert();
-        // header("Location:register_berhasil.php");
-    }else {
-        echo "Insert Gagal";
+        $user->insert();
+        header("Location:register_berhasil.php");
     }
 }
 ?>
